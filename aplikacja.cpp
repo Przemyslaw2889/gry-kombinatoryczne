@@ -130,11 +130,8 @@ int main() {
             string litera;
             while(slowo.length() < Maxrozmiar)
             {
-<<<<<<< HEAD
+
                 cout << "### Aktualne slowo: " << slowo << "###" << endl;
-=======
-                cout << "###Aktualne slowo: " << slowo << "###" << endl;
->>>>>>> refs/remotes/origin/master
                 cout << "Gracz1: Podaj na ktorym miejscu Gracz 2 ma wstawic litere (od 0 do " << slowo.length() << ")" << endl;
                 cin >> miejsce;
                 cout << "Gracz2: Podaj litere ktora chcesz wstawic (mozliwe: " << alfabet << ")" << endl;
@@ -177,3 +174,4 @@ int main() {
     //system("pause");
     return 0;
 }
+
