@@ -1,9 +1,10 @@
 #include <iostream>
+#include <string>
 
 using namespace std;
 
-const short Maxrozmiar = 50;
-const short MaxRozmiarWzorca = 10;
+const short Maxrozmiar = 10;
+const short MaxRozmiarWzorca = 3;
 
 bool czyRowne(char* slowo1, char* slowo2) {
     for (int i = 0; slowo1[i] != NULL && slowo2[i] != NULL; i++)
@@ -11,7 +12,7 @@ bool czyRowne(char* slowo1, char* slowo2) {
     return 1;
 }
 
-bool czyRowneAbelowo(char* slowo, int pocz1, int kon1, int pocz2, int kon2) {
+bool czyRowneAbelowo(const char* slowo, int pocz1, int kon1, int pocz2, int kon2) {
     if (kon1 - pocz1 != kon2 - pocz2 || kon1<pocz1) return 0;
     int n = kon1 - pocz1 + 1;
     bool* juzWybrane= new bool[n];
@@ -49,13 +50,13 @@ char* Wstaw(char* slowo, char znak, int pozycja) {
     return slowo;
 }
 
-int rozmiar(char* slowo) {
+int rozmiar(const char* slowo) {
     int i = 0;
     while (slowo[i] != NULL) { i++; }
     return i;
 }
 
-bool czyWystepujeWzorzec1(char* slowo, char* wzorzec, int dlugosc) {
+bool czyWystepujeWzorzec1(const char* slowo,const char* wzorzec, int dlugosc) {
     bool czy = 0;
     for (int i = 0; i + rozmiar(wzorzec)*dlugosc <= rozmiar(slowo); i++) {
         czy = 1;
@@ -71,13 +72,13 @@ bool czyWystepujeWzorzec1(char* slowo, char* wzorzec, int dlugosc) {
     return 0;
 }
 
-bool czyWystepujeWzorzec(char* slowo, char* wzorzec) {
+bool czyWystepujeWzorzec(const char* slowo,const char* wzorzec) {
     for (int i = 1; i*rozmiar(wzorzec) <= rozmiar(slowo); i++)
         if (czyWystepujeWzorzec1(slowo, wzorzec, i)) return 1;
     return 0;
 }
 
-char* generujAlfabet(char* slowo) {
+char* generujAlfabet(const char* slowo) {
     char* A=new char[Maxrozmiar];
     int ile = 0;
     bool juzJest;
@@ -98,7 +99,7 @@ char* generujAlfabet(char* slowo) {
     delete A;
 }
 
-void wypisz(char* slowo) {
+void wypisz(const char* slowo) {
     cout << "{"<<slowo[0];
     for (int i = 1; i<rozmiar(slowo); i++) cout <<","<< slowo[i];
     cout <<"}"<< endl;
@@ -114,16 +115,37 @@ int main() {
         cout << "3 - komputer vs komputer" << endl;
         int wybor;
         cin >> wybor; cin.get();
+
+        //Ustalamy alfabet. 
+        string alfabet("abc");
+        string wzorzec("xx");
+        string slowo("");
+
         switch(wybor)
         {
         case 0:
-
-            char ciag2[Maxrozmiar];
-            cin.getline(ciag2, Maxrozmiar);
-            cout <<generujAlfabet(ciag2) << endl;
-            wypisz(generujAlfabet(ciag2));
-
-            break;
+        {
+            int wygrany = 2;
+            int miejsce = 0;
+            string litera;
+            while(slowo.length() < Maxrozmiar)
+            {
+                cout << "###Aktualne slowo: " << slowo << "###" << endl;
+                cout << "Gracz1: Podaj na ktorym miejscu Gracz 2 ma wstawic litere (od 0 do " << slowo.length() << ")" << endl;
+                cin >> miejsce;
+                cout << "Gracz2: Podaj litere ktora chcesz wstawic (mozliwe: " << alfabet << ")" << endl;
+                cin >> litera;
+                slowo.insert(miejsce, litera);
+                if(czyWystepujeWzorzec(slowo.c_str(), wzorzec.c_str()))
+                {
+                    cout << "Wygral gracz 1, gratulacje" << endl;
+                    wygrany = 1;
+                    break;
+                }
+            }
+            if(wygrany==2) cout << "Wygral gracz 2, gratulacje" << endl;
+            break; 
+        } 
         case 1:
 
             char ciag[Maxrozmiar];
@@ -148,7 +170,6 @@ int main() {
             break;
         }
     }
-    cin.get(0)
     //system("pause");
     return 0;
 }
