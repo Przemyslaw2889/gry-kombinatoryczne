@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <stdlib.h>
+#include <time.h>
 
 using namespace std;
 
@@ -130,37 +132,96 @@ int main() {
             string litera;
             while(slowo.length() < Maxrozmiar)
             {
+<<<<<<< HEAD
+                cout << endl << "Gracz1: Podaj na ktorym miejscu Gracz 2 ma wstawic litere (od 0 do " << slowo.length() << ")" << endl;
+=======
 
                 cout << "### Aktualne slowo: " << slowo << "###" << endl;
                 cout << "Gracz1: Podaj na ktorym miejscu Gracz 2 ma wstawic litere (od 0 do " << slowo.length() << ")" << endl;
+>>>>>>> 2221d031fb99f8ae1b440791d3e73cf1f5ee7db0
                 cin >> miejsce;
                 cout << "Gracz2: Podaj litere ktora chcesz wstawic (mozliwe: " << alfabet << ")" << endl;
                 cin >> litera;
                 slowo.insert(miejsce, litera);
                 if(czyWystepujeWzorzec(slowo.c_str(), wzorzec.c_str()))
                 {
+                    cout << "### Aktualne slowo: " << slowo << "  ###" << endl;
                     cout << "Wygral gracz 1, gratulacje" << endl;
                     wygrany = 1;
                     break;
                 }
+                cout << "### Aktualne slowo: " << slowo << "  ###" << endl;
             }
-            if(wygrany==2) cout << "Wygral gracz 2, gratulacje" << endl;
+             if(wygrany==2)
+            {
+                cout << "### Aktualne slowo: " << slowo << "  ###" << endl;
+                cout << "Wygral komputer :(" << endl;
+            } 
             break; 
         } 
         case 1:
+        {
+            srand (time(NULL));
+            int wygrany = 2;
+            int miejsce = 0;
+            while(slowo.length() < Maxrozmiar)
+            {
+                cout << endl << "Gracz1: Podaj na ktorym miejscu Gracz 2 ma wstawic litere (od 0 do " << slowo.length() << ")" << endl;
+                cin >> miejsce;
+                
+                int idx = rand()%alfabet.length();
+                string litera = alfabet.substr(idx, 1);
 
-            char ciag[Maxrozmiar];
-            char wz[MaxRozmiarWzorca];
-
-            cout << "Podaj ciag wyjsciowy: ";
-            cin.getline(ciag, Maxrozmiar);
-            cout << "Podaj wzorzec: ";
-            cin.getline(wz, MaxRozmiarWzorca);
-            if (czyWystepujeWzorzec(ciag, wz)) cout << "Wzorzec wystepuje!" << endl;
-            else cout << "Wzorzec nie wystepuje!" << endl;
+                slowo.insert(miejsce, litera);
+                if(czyWystepujeWzorzec(slowo.c_str(), wzorzec.c_str()))
+                {
+                    cout << "### Aktualne slowo: " << slowo << "  ###" << endl;
+                    cout << "Wygral gracz 1, gratulacje" << endl;
+                    wygrany = 1;
+                    break;
+                }
+                cout << "### Aktualne slowo: " << slowo << " ###" << endl;
+            }
+            if(wygrany==2)
+            {
+                cout << "### Aktualne slowo: " << slowo << "  ###" << endl;
+                cout << "Wygral komputer :(" << endl;
+            } 
+            break; 
+        } 
 
             break;
         case 2:
+        {
+            srand (time(NULL));
+            int wygrany = 2;
+            int miejsce = 0;
+            string litera;
+            while(slowo.length() < Maxrozmiar)
+            {
+                miejsce = rand() % (slowo.length()+1);
+                cout << endl << "Komputer wybral miejsce nr " << miejsce << ". Prosze wstawic tam litere" << endl;
+
+                cout << "Gracz2: Podaj litere ktora chcesz wstawic (mozliwe: " << alfabet << ")" << endl;
+                cin >> litera;
+
+                slowo.insert(miejsce, litera);
+                if(czyWystepujeWzorzec(slowo.c_str(), wzorzec.c_str()))
+                {
+                    cout << "### Aktualne slowo: " << slowo << "  ###" << endl;
+                    cout << "Wygral gracz 1, gratulacje" << endl;
+                    wygrany = 1;
+                    break;
+                }
+                cout << "### Aktualne slowo: " << slowo << " ###" << endl;
+            }
+            if(wygrany==2)
+            {
+                cout << "### Aktualne slowo: " << slowo << "  ###" << endl;
+                cout << "Wygral komputer :(" << endl;
+            } 
+            break; 
+        } 
 
             break;
         case 3:
