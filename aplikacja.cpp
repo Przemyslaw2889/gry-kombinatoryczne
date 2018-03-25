@@ -125,6 +125,7 @@ int main() {
 
         switch(wybor)
         {
+
         case 0:
         {
             int wygrany = 2;
@@ -132,12 +133,12 @@ int main() {
             string litera;
             while(slowo.length() < Maxrozmiar)
             {
-
                 cout << endl << "Gracz1: Podaj na ktorym miejscu Gracz 2 ma wstawic litere (od 0 do " << slowo.length() << ")" << endl
                 cin >> miejsce;
                 
                 cout << "Gracz2: Podaj litere ktora chcesz wstawic (mozliwe: " << alfabet << ")" << endl;
                 cin >> litera;
+
                 slowo.insert(miejsce, litera);
                 if(czyWystepujeWzorzec(slowo.c_str(), wzorzec.c_str()))
                 {
@@ -148,6 +149,7 @@ int main() {
                 }
                 cout << "### Aktualne slowo: " << slowo << "  ###" << endl;
             }
+
              if(wygrany==2)
             {
                 cout << "### Aktualne slowo: " << slowo << "  ###" << endl;
@@ -155,6 +157,7 @@ int main() {
             } 
             break; 
         } 
+
         case 1:
         {
             srand (time(NULL));
@@ -185,8 +188,8 @@ int main() {
             } 
             break; 
         } 
-
             break;
+            
         case 2:
         {
             srand (time(NULL));
