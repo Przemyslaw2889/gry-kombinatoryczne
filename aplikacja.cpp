@@ -133,7 +133,7 @@ int main() {
             string litera;
             while(slowo.length() < Maxrozmiar)
             {
-                cout << endl << "Gracz1: Podaj na ktorym miejscu Gracz 2 ma wstawic litere (od 0 do " << slowo.length() << ")" << endl
+                cout << endl << "Gracz1: Podaj na ktorym miejscu Gracz 2 ma wstawic litere (od 0 do " << slowo.length() << ")" << endl;
                 cin >> miejsce;
                 
                 cout << "Gracz2: Podaj litere ktora chcesz wstawic (mozliwe: " << alfabet << ")" << endl;
