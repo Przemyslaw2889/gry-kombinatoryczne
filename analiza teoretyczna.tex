@@ -1,0 +1,169 @@
+\documentclass[12pt,a4paper]{amsart}
+\usepackage[T1]{fontenc}
+\usepackage[polish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{enumerate}
+\usepackage{cite} 
+\newtheorem{theorem}{Twierdzenie}
+\begin{document}
+\title{Wzorce abelowe w ciagach}
+\author{Krzysztof Banecki, Robert Dang, Przemysław Kaleta}
+\date{\today}
+\maketitle
+
+\begin{abstract}
+Tematem naszego projektu jest abelowa gra w zakazane wzorce. Na wstępie opiszemy zasady gry. Następnie zaprezentujemy wynik dotyczący nieskończonych ciągów bez powtórzeń abelowych. Żeby to osiągnąć przytoczymy odpowiednie twierdzenie z dowodem.
+\end{abstract}
+
+\section{Opis gry}
+W modelu abelowym dwa słowa są równe, jeśli ich multizbiory liter są takie same tj. jedno słowo jest spermutowanym drugim słowem. Dla przykładu wzorzec xx, występuje w słowie abccab, gdyż kolejno powtarza się słowo abc=cab.\\
+\\
+Na czym polega gra? Na początku ustalamy pewien wzorzec, przykładowo xx, xyx, xxx, xyy, xxyy itp. W grę grają dwie osoby. Pierwszy gracz pokazuje miejsce w słowie, drugi wstawia tam wybraną literę z alfabetu (ustalonego wcześniej). Pierwszy gracz chce zmusić drugiego do ułożenia zakazanego wzorca (w sensie abelowym), drugi stara się układać słowo niezawierające podanego wzorca. Gracz pierwszy wygrywa, gdy w słowie wystąpi wzorzec, gracz drugi wygrywa, gdy słowo osiągnie zadaną długość, a wzorzec się nie pojawi.
+
+\section{Analiza teoretyczna gry}
+Spójrzmy na grę z pespektywy drugiego gracza. Dąży on do tego, żeby utworzyć słowo o okeślonej długości, którą ustalamy przed grą. Oczywiście im ono jest dłuższe tym trudniej będzie mu osiągnąć sukces. Rozważmy przykładowo wzorzec xx, czyli bezpośrednią repetycję dwóch słów będących swoimi permutacjami na alfabecie $I=\{a,b,c\}$. Nietrudno sprawdzić, że nie da się utworzyć słowa bez takich repetycji dłuższych niż 8. Stawia to gracza 2 w dość niekorzystnej sytuacji. Mając w pamięci twierdzenie Tuego, które wskazywało na nieskończony ciąg bez zwyczajnych repetycji na trzyelementowych alfabecie warto się zastanowić nad istnieniem ciągów bez występowania określonych abelowych wzorców. Wtedy gracz 2 miałby teoretyczne szanse na wygraną przy dowolnej długości słowa kończącego grę.\\
+\subsection{Wpowadzenie}
+Będziemy rozważać tylko wzorce typu $xx\dots x$. Ogólnie w tego typu problemie mamy dwa parametry: $r$ - liczność alfabetu $I$, oraz $n$ (nazwane rzędem powtórzenia) - ile razy dany bloczek abelowy się powtórzy. Twierdzenie, które zaprezentujemy pokaże nam jak można próbować konstruować nieskończone ciągi bez powtórzeń abelowych. W tym celu wprowadźmy pojęcia, które będziemy używali w dalszej części.\\
+\\
+Przez $I$ oznaczamy alfabet liczności $r$, możemy używać tylko liter z tego zbioru. Bloczkiem nazywamy uporządkowany, skończony ciąg liter. 
+
+Wprowadzamy odwzorowanie $\theta$ z $I$ w zbiór wszystkich możliwych bloczków. Gdy mamy zdefiniowane $\theta$ na zbiorze I, możemy je również rozszerzyć na zbiór wszystkich bloczków przyjmując $\theta(b_1 \dots b_m) = \theta(b_1) \dots \theta(b_m)$, gdzie przez $b_1 \dots b_m$ rozumiemy bloczek złożony z odpowienich liter $b_1, b_2, \dots b_m$.
+
+$\theta i$ dla $i \in I$ będziemy nazywać $\theta$-bloczkiem. Możemy zapisać $\theta i = VV'$, gdzie $V' \neq E$, oraz jako $E$ oznaczamy pusty bloczek. $V$ oraz $V'$ będziemy nazywali podbloczkami, odpowiednio lewym i prawym.
+
+Wektorem zliczającym bloku $B$ będziemy nazywali wektor $f_B$, w którym w i-tym miejsu będzie liczność występowania $i$ w bloku B. Zwróćmy uwagę, że bloczki są równe abelowo wtedy i tylko w tedy gdy mają te same wektory liczące.
+
+Przez $M_{\theta}$ będziemy oznaczać macierz $r \times r$, w której w j-tym wierszu jest wektor liczący bloczka $\theta j$.
+
+W twiedzeniu wykorzystamy skończoną grupę abelową $G$ i funkcję $f: I \rightarrow G$. Zdefiniowana jest ona na $I$, ale podobnie jak dla $\theta$ możemy rozszerzyć ją na całe bloczki poprzez równość $f(b_1 \dots b_m) = f(b_1) + \dots + f(b_m)$.
+
+$A \subset G$ nazywamy zbiorem bez postępu rzędu n, jeśli nie ma w sobie ciągu arytmetycznego długości n, to znaczy zachodzi implikacja:
+\begin{center}
+$a \in A, a+g \in A, \dots a+(n-1)g \in A \implies g=0$
+\end{center}
+
+Przy danym odwzorowaniu $\theta$, grupie $G$ oraz funkcji $f$, f nazywamy $\theta$-iniektywną jeśli dla dowolnego n naturalnego i dowolnych lewych $\theta$ podbloczków $V_1, \dots V_n$ równość $f(V_1)=f(V_2)= \dots f(V_n)$ implikuje, że albo $V_1=V_2= \dots V_{n+1}$ albo $V_1'=V_2'= \dots V_{n+1}'$
+
+Poprzez odwzorowanie $\theta$ możemy generować ciąg iterując $\theta$ na pewnej literze. Zauważmy, że gdy $\theta a$ zaczyna się od litery a to kolejne iteracje mają początek pokrywający się z poprzednią iteracją. Dzięki temu ciąg możemy iterować w nieskończoność. Powstały w ten sposób ciąg będziemy nazywali ciągiem generowanym przez $\theta$.
+
+\newpage
+\begin{theorem}[Dekking, 1978]
+Niech $n>1$, a $\theta$ będzie jak wyżej. Niech ponadto $G$ będzie skończoną grupą abelową i f odwzorowaniem $f: I \rightarrow G$ zdefiniowanym jak wyżej, takim że:
+\begin{enumerate}[(i)]
+\item macierz $M_{\theta}$ jest nieosobliwa
+\item dla każdego $i \in I$, $f(\theta i)=0$
+\item zbiór $A = \{g \in G: g=f(V)$, V-lewy podbloczek $\theta$-bloczka$\}$ jest bez postępu rzędu n+1
+\item f jest $\theta$-iniektywna
+\end{enumerate}
+Wtedy dowolny ciąg generowany przez $\theta$ nie ma powtórzeń abelowych rzędu n.
+\end{theorem}
+
+\begin{proof}
+Niech $x$ będzie ciągiem generowanym przez $\theta$. Przypuśćmy, że występuje powtórzenie rzędu n i niech $B_1 \dots B_n$ będzie tym powtórzeniem tzn. $B_k$ są swoimi permutacjami. Wybierzmy ponadto takie powtórzenie, że długość tych bloczków jest minimalna. x powstał przez przez ciągłe iterowanie $\theta$, zatem składa się z bloczków postaci $\theta i$. Oznaczmy przez $i_k$ taką literę, że $B_k$ zaczyna się w $\theta i_k$, $k=1 \dots n$ oraz $B_n$ kończy się w $\theta i_{n+1}$. Podzielmy $\theta i_k$ na dwa bloczki: $\theta i_k$ = $V_k V_k'$, gdzie $V_k'$ zaczyna się w tym miejscu co $B_k$ (czyli $V_k$ może być pusty). 
+%Mozna by tu dac przyklad takiego ciagu
+
+Z definicji działania $f$ na blokach i przemienności grupy $G$: $f(B_1)=f(B_2)= \dots f(B_n)$ (gdyż $B_k$ są swoimi permutacjami). Co więcej z $(ii)$ $f(\theta i)=0$ $\forall i \in I$. Można stąd zauważyć, że $f(V_1), \dots f(V_{n+1}$ jest ciągiem arytmetycznym, a ponieważ jest on długości $n+1$, a $V_k$ są lewymi podbloczkami, to z $(iii)$ watości $f(V_k)$ są sobie równe dla każdego k. Z $(iv)$ mamy teraz, że albo $V_1=V_2= \dots V_{n+1}$ albo $V_1'=V_2'= \dots V_{n+1}'$. W obydwu przypadkach mamy teraz istnienie bloczka $C_1,\dots C_n$ w $x$, takiego że $C_k$ są swoimi permutacjami i składają się tylko z $\theta$ bloczków. Zdefiniujmy więc $D_k$ poprzez równość $C_k = \theta D_k$. Z konstrukcji ciągu $x$ blok $D_1 \dots D_n$ również występuje w tym ciągu oraz jest oczywiście krótszy.
+
+Pokażemy teraz, że $D_k$ są swoimi permutacjami. W tym celu oznaczmy przez $f_{D_k}$ wektor zliczający bloczka $D_k$, a poprzez $f_{C_k}$ wektor zliczający bloczka $C_k$. Zachodzi równość:
+\begin{equation}
+f_{C_k} = f_{D_k} M_{\theta}
+\end{equation}
+dla dowolnego $k$. Macierz $M_{\theta}$ jest odwracalna, więc w jednoznaczny sposób możemy wyznaczyć $f_{D_k}$ poprzez tę macierz i wektory zliczające $C_k$. $C_k$ były jednak swoimi permutacjami, więc miały równe wektory zliczające, a stąd i wektory zliczające $D_k$ są sobie równe.
+
+Otrzymaliśmy, że $D_1 \dots D_n$ jest krótszym powtórzeniem rzędu n, co stoi w sprzeczności z wyborem $B_1,\dots B_n$ i oznacza, że twierdznie jest prawdziwe.
+
+\end{proof}
+
+\subsection{Wyniki}
+Powyższe twierdzenie pozwala nam na pokazanie istnienia nieskończonych ciągów na ustalonym alfabecie bez abelowych powtórzeń dowolnego rzędu. Otrzymujemy dwa twierdzenia:
+\begin{theorem}
+Istnieje ciąg na dwuelementowym alfabecie, w którym nigdzie nie występują cztery bloki będące swoimi permutacjami.
+\end{theorem}
+
+\begin{proof}
+$I = \{a, b\}$. Zdefiniujmy $\theta$ na $I$ poprzez:
+\begin{equation}
+\theta a = abb
+\end{equation}
+\begin{equation}
+\theta b = aaab
+\end{equation}
+
+Ustalmy $G = \mathbb{Z}_5$ i zdefiniujmy f poprzez:
+\begin{equation}
+f(a) = 1
+\end{equation}
+\begin{equation}
+f(b) = 2
+\end{equation}
+To co pozostało to sprawdzić, że założenia wyżej wymienionego twierdzenia są spełnione.
+
+Macierz $M_{\theta} = \begin{bmatrix}
+1 & 2 \\
+3 & 1 
+\end{bmatrix}  $
+jest oczywiście nieosobliwa.
+
+Spawdźmy jakie wartości przyjmuje $f$ na lewych podbloczkach:
+\begin{equation}
+(f(a), f(ab), f(abb)) = (1, 3, 0)
+\end{equation}
+
+\begin{equation}
+(f(a), f(aa), f(aaa), f(aaab)) = (1, 2, 3, 0)
+\end{equation}
+
+Widzimy, że $f(\theta a) = f(\theta b) = 0$. Ponadto f jest $\theta$-iniektywna. Pozostało sprawdzić, że zbiór  $A = \{g \in G: g=f(V)$, V-lewy podbloczek $\theta\}$ jest bez postępu rzędu 5. Tak jest gdyż
+\begin{equation}
+A = \{0, 1, 2, 3\}
+\end{equation}
+Na podstawie twierdzenia $1$ możemy więc stwierdzić, że ciąg generowany przez $\theta$ jest ciągiem bez powtórzeń rzędu 4. Dla przykładu podamy ciąg będący czwartą iteracją $\theta$:
+\begin{equation}
+abbaaabaaababbabbabbaaababbabbabbaaab
+\end{equation}
+Jak sprawdziliśmy, rzeczywiście nie zawiera on abelowego wzorca xxxx.
+\end{proof}
+
+\begin{theorem}
+Istnieje ciąg na trzyelementowym alfabecie, w którym nigdzie nie występują trzy bloki będące swoimi permutacjami. 
+\end{theorem}
+
+\begin{proof}
+Definiujemy: $I = \{a, b, c\}$. Zdefiniujmy $\theta$ na $I$ poprzez:
+\begin{equation}
+\theta a = aabc
+\end{equation}
+\begin{equation}
+\theta b = bbc
+\end{equation}
+\begin{equation}
+\theta c = acc
+\end{equation}
+Wybieramy grupę $G = \mathbb{Z}_7$
+\begin{equation}
+f(a) = 1
+\end{equation}
+\begin{equation}
+f(b) = 2
+\end{equation}
+\begin{equation}
+f(c) = 3
+\end{equation}
+Podbnie jak poprzednio spełnione są założenia twierdzenia $1$.
+\end{proof}
+
+\section{Podsumowanie}
+Omówiliśmy istnienie nieskończonych ciągów bez powtórzeń rzędu 4 na dwu-elementowym alfabecie oraz bez powtórzeń rzędu 3 na 3-elementowym alfabecie. To, o czym tylko wspomnieliśmy na wstępie, to powtórzenia drugiego rzędu. Jest to zdecydowanie kwestia warta dalszego zbadania.
+
+
+\begin{thebibliography}{9}
+\bibitem{latexcompanion} 
+Dekking F.m. 
+\textit{Strongly non-repetitive sequences and progression-free sets}. 
+Journal of Combinatorial Theory, Series A,pages 181–185, 1979.
+
+\end{thebibliography}
+
+
+
+\end{document}
